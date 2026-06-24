@@ -1,0 +1,66 @@
+{
+  "skill_name": "start-task",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "start a task",
+      "expected_output": "Skill invokes, reads config, queries GitHub Projects board for In Progress parent issue, lists subtasks, selects first eligible (Ready or In Progress), checks blockers, creates branch on the code repo (CODE_REPO), prints compact 4-line report",
+      "assertions": [
+        {
+          "name": "reads-project-config",
+          "description": "Reads project_config.md before making any GitHub calls"
+        },
+        {
+          "name": "queries-github-board",
+          "description": "Makes at least one GitHub MCP call to find issues"
+        },
+        {
+          "name": "prints-report",
+          "description": "Ends with a compact report containing Type, Branch, ADR, and Blockers fields"
+        },
+        {
+          "name": "branch-format-correct",
+          "description": "Branch name follows <type>/<issue-number>-<description> format"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "what should I work on next?",
+      "expected_output": "Skill triggers automatically on this phrase and runs the same 7-step workflow",
+      "assertions": [
+        {
+          "name": "skill-triggered",
+          "description": "Skill runs (not just a plain text answer about task selection)"
+        },
+        {
+          "name": "queries-github-board",
+          "description": "Makes GitHub MCP calls rather than guessing"
+        },
+        {
+          "name": "prints-report",
+          "description": "Ends with the compact 4-field report"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "let's begin working on the accounts module",
+      "expected_output": "Skill triggers, runs workflow; selects a subtask related to accounts if one exists, creates branch, prints report",
+      "assertions": [
+        {
+          "name": "skill-triggered",
+          "description": "Skill runs the workflow rather than just discussing accounts"
+        },
+        {
+          "name": "does-not-hardcode-accounts",
+          "description": "Branch selection is driven by the board state, not the user's mention of accounts"
+        },
+        {
+          "name": "prints-report",
+          "description": "Ends with the compact 4-field report"
+        }
+      ]
+    }
+  ]
+}
