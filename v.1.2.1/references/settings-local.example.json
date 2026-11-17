@@ -1,0 +1,32 @@
+{
+  "_comment": "Copy the env block into .claude/settings.local.json at the root of the project you work in (gitignored). Fill the values; leave out variables you do not use. Skills and agents never read .env files. See references/conventions.md for which skill needs which variable.",
+  "env": {
+    "AI_SDLC_PROFILE": "",
+    "JIRA_URL": "",
+    "JIRA_PROJECT": "",
+    "JIRA_USERNAME": "",
+    "JIRA_API_TOKEN": "",
+    "JIRA_IN_REVIEW_STATUS": "",
+    "GIT_USERNAME": "",
+    "ADO_ORG": "",
+    "ADO_PROJECT": "",
+    "ADO_REPO": "",
+    "ADO_PAT": "",
+    "GITLAB_URL": "",
+    "GITLAB_TOKEN": "",
+    "GITLAB_PROJECT": "",
+    "PRE_PR_VERIFY_CMD": ""
+  },
+  "_notes": {
+    "AI_SDLC_PROFILE": "Profile name; when unset the profile is matched by git remote. Create one with /dev-profile-init.",
+    "JIRA_URL": "Jira instance root, e.g. https://jiraeu.epam.com",
+    "JIRA_API_TOKEN": "Jira Personal Access Token, not your account password",
+    "JIRA_IN_REVIEW_STATUS": "Only needed without a profile: the status name behind the In Review column",
+    "GIT_USERNAME": "Short name used in branches; derived from git config user.email when unset",
+    "ADO_*": "Only for Azure DevOps repos; ADO_PAT needs Code (Read & Write)",
+    "GITLAB_URL": "Instance root, not a project URL",
+    "GITLAB_TOKEN": "api scope to open MRs or post comments; read_api is enough for review",
+    "GITLAB_PROJECT": "group/subgroup/repo; derived from origin when unset",
+    "PRE_PR_VERIFY_CMD": "Optional single command replacing the pipeline-derived pre-flight plan"
+  }
+}
